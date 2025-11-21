@@ -85,14 +85,15 @@ export default function TabLayout() {
 
       {/* INSIGHTS AI DASHBOARD (NEW) */}
       <Tabs.Screen
-        name="insights"
-        options={{
-          title: "Insights",
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="chart.bar.doc.horizontal.fill" color={color} />
-          ),
-        }}
-      />
+  name="insights"
+  options={{
+    title: "Insights",
+    tabBarIcon: ({ color }) => (
+      <IconSymbol size={28} name="chart.bar.doc.horizontal.fill" color={color} />
+    ),
+  }}
+/>
+
 
       {/* PANIC SCREEN */}
       <Tabs.Screen

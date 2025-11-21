@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { VictoryPie, VictoryLine, VictoryChart, VictoryTheme } from "victory-native";
+import { View, Text, StyleSheet, ScrollView, Dimensions } from "react-native";
+import { LineChart, PieChart } from "react-native-chart-kit";
 
 export default function Insights() {
   const [dailyData, setDailyData] = useState([]);
@@ -21,7 +21,6 @@ export default function Insights() {
 
     const total = dummy.reduce((a, b) => a + b.value, 0);
     const avg = total / dummy.length;
-
     setSummary({ total, avg });
   }, []);
 
@@ -36,24 +35,43 @@ export default function Insights() {
       </View>
 
       <Text style={styles.chartTitle}>📈 Activity Trend</Text>
-      <VictoryChart theme={VictoryTheme.material}>
-        <VictoryLine
-          data={dailyData}
-          x="day"
-          y="value"
-          style={{
-            data: { stroke: "#0078ff", strokeWidth: 3 }
-          }}
-        />
-      </VictoryChart>
+      <LineChart
+        data={{
+          labels: dailyData.map((d) => d.day),
+          datasets: [{ data: dailyData.map((d) => d.value) }]
+        }}
+        width={Dimensions.get("window").width - 40}
+        height={220}
+        chartConfig={{
+          backgroundGradientFrom: "#fff",
+          backgroundGradientTo: "#fff",
+          decimalPlaces: 0,
+          color: () => "#0078ff",
+          strokeWidth: 2
+        }}
+        bezier
+        style={styles.chart}
+      />
 
       <Text style={styles.chartTitle}>📊 Distribution</Text>
-      <VictoryPie
-        data={dailyData}
-        x="day"
-        y="value"
-        colorScale="cool"
-        padding={40}
+      <PieChart
+        data={dailyData.map((d, i) => ({
+          name: d.day,
+          population: d.value,
+          color: ["#ff6384", "#36a2eb", "#ffcd56", "#4bc0c0"][i % 4],
+          legendFontColor: "#333",
+          legendFontSize: 12
+        }))}
+        width={Dimensions.get("window").width - 40}
+        height={220}
+        chartConfig={{
+          backgroundGradientFrom: "#fff",
+          backgroundGradientTo: "#fff",
+          color: () => "#000"
+        }}
+        accessor="population"
+        backgroundColor="transparent"
+        paddingLeft="10"
       />
     </ScrollView>
   );
@@ -67,7 +85,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#f1f1f1",
     padding: 15,
     borderRadius: 10,
-    marginBottom: 20,
+    marginBottom: 20
   },
   cardTitle: { fontSize: 18, fontWeight: "bold", marginBottom: 8 },
+  chart: { borderRadius: 10, marginVertical: 8 }
 });
