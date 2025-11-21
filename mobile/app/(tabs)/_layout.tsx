@@ -43,7 +43,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="fall"
         options={{
-          title: "Fall Detection",
+          title: "Fall",
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="figure.walk.motion" color={color} />
           ),
@@ -54,9 +54,20 @@ export default function TabLayout() {
       <Tabs.Screen
         name="help"
         options={{
-          title: "HELP Detect",
+          title: "Help",
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="mic.fill" color={color} />
+          ),
+        }}
+      />
+
+      {/* BREATHING DETECTION (NEW) */}
+      <Tabs.Screen
+        name="BreathingScreen"
+        options={{
+          title: "Breathing",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="waveform.path.ecg" color={color} />
           ),
         }}
       />
@@ -65,9 +76,53 @@ export default function TabLayout() {
       <Tabs.Screen
         name="live"
         options={{
-          title: "Live Location",
+          title: "Location",
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="location.fill" color={color} />
+          ),
+        }}
+      />
+
+      {/* INSIGHTS AI DASHBOARD (NEW) */}
+      <Tabs.Screen
+        name="insights"
+        options={{
+          title: "Insights",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="chart.bar.doc.horizontal.fill" color={color} />
+          ),
+        }}
+      />
+
+      {/* PANIC SCREEN */}
+      <Tabs.Screen
+        name="panic"
+        options={{
+          title: "Panic",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="exclamationmark.triangle.fill" color={color} />
+          ),
+        }}
+      />
+
+      {/* TRUSTED CONTACTS */}
+      <Tabs.Screen
+        name="trusted"
+        options={{
+          title: "Trusted",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="person.2.fill" color={color} />
+          ),
+        }}
+      />
+
+      {/* CAMERA SCREEN */}
+      <Tabs.Screen
+        name="CameraScreen"
+        options={{
+          title: "Camera",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="camera.fill" color={color} />
           ),
         }}
       />
